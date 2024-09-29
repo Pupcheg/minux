@@ -81,6 +81,8 @@ public final class MinuxCommand {
         String oldShellCommand = minux.getConfiguration().getShellCommand();
         String newShellCommand = getString(ctx, COMMAND);
 
+        minux.getConfiguration().setShellCommand(newShellCommand);
+
         ctx.getSource().sendMessage(
                 translatable("minux.command.shell.replace",
                         Text.literal(oldShellCommand).formatted(Formatting.WHITE),
