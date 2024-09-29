@@ -8,16 +8,16 @@ import lombok.SneakyThrows;
 import me.supcheg.minux.Minux;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.NotNull;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static com.mojang.brigadier.arguments.StringArgumentType.string;
+import static net.kyori.adventure.text.Component.text;
+import static net.kyori.adventure.text.Component.translatable;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
-import static net.minecraft.text.Text.translatable;
 
 @Environment(EnvType.CLIENT)
 @RequiredArgsConstructor
@@ -53,26 +53,31 @@ public final class MinuxCommand {
     private int restart(@NotNull CommandContext<ServerCommandSource> ctx) {
         minux.restartTerminal();
         ctx.getSource().sendMessage(
-                translatable("minux.command.restart.success")
-                        .formatted(Formatting.GREEN)
+                translatable("minux.command.restart.success", NamedTextColor.GREEN)
         );
         return Command.SINGLE_SUCCESS;
     }
 
     private int getRunningShell(@NotNull CommandContext<ServerCommandSource> ctx) {
         ctx.getSource().sendMessage(
-                translatable("minux.command.shell.get.running",
-                        Text.literal(minux.getTerminal().getShellCommand()).formatted(Formatting.WHITE)
-                ).formatted(Formatting.YELLOW)
+                translatable()
+                        .key("minux.command.shell.get.running")
+                        .color(NamedTextColor.YELLOW)
+                        .arguments(
+                                text(minux.getTerminal().getShellCommand(), NamedTextColor.WHITE)
+                        )
         );
         return Command.SINGLE_SUCCESS;
     }
 
     private int getConfiguredShell(@NotNull CommandContext<ServerCommandSource> ctx) {
         ctx.getSource().sendMessage(
-                translatable("minux.command.shell.get.configured",
-                        Text.literal(minux.getConfiguration().getShellCommand()).formatted(Formatting.WHITE)
-                ).formatted(Formatting.YELLOW)
+                translatable()
+                        .key("minux.command.shell.get.configured")
+                        .color(NamedTextColor.YELLOW)
+                        .arguments(
+                                text(minux.getConfiguration().getShellCommand(), NamedTextColor.WHITE)
+                        )
         );
         return Command.SINGLE_SUCCESS;
     }
@@ -84,10 +89,13 @@ public final class MinuxCommand {
         minux.getConfiguration().setShellCommand(newShellCommand);
 
         ctx.getSource().sendMessage(
-                translatable("minux.command.shell.replace",
-                        Text.literal(oldShellCommand).formatted(Formatting.WHITE),
-                        Text.literal(newShellCommand).formatted(Formatting.WHITE)
-                ).formatted(Formatting.YELLOW)
+                translatable()
+                        .key("minux.command.shell.replace")
+                        .color(NamedTextColor.YELLOW)
+                        .arguments(
+                                text(oldShellCommand, NamedTextColor.WHITE),
+                                text(newShellCommand, NamedTextColor.WHITE)
+                        )
         );
         return Command.SINGLE_SUCCESS;
     }
