@@ -59,7 +59,6 @@ public final class MinuxCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    @SneakyThrows
     private int getRunningShell(@NotNull CommandContext<ServerCommandSource> ctx) {
         ctx.getSource().sendMessage(
                 translatable("minux.command.shell.get.running",
@@ -69,7 +68,6 @@ public final class MinuxCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    @SneakyThrows
     private int getConfiguredShell(@NotNull CommandContext<ServerCommandSource> ctx) {
         ctx.getSource().sendMessage(
                 translatable("minux.command.shell.get.configured",
@@ -79,7 +77,6 @@ public final class MinuxCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    @SneakyThrows
     private int setShellCommand(@NotNull CommandContext<ServerCommandSource> ctx) {
         String oldShellCommand = minux.getConfiguration().getShellCommand();
         String newShellCommand = getString(ctx, COMMAND);
