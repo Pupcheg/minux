@@ -3,11 +3,10 @@
   "id": "${id}",
   "version": "${version}",
   "name": "Minux",
-  "description": "Replace chat with shell",
+  "description": "Replaces boring chat with a fun command shell",
   "authors": [
     "Supcheg"
   ],
-  "contact": {},
   "license": "Apache-2.0",
   "icon": "assets/minux/icon.png",
   "environment": "client",
@@ -25,10 +24,18 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": ">=${fabric_version}",
-    "minecraft": "${minecraft_version}",
-    "yet_another_config_lib_v3": ">=${yacl_version}"
+    "minecraft": "${minecraft_version}"
   },
   "suggests": {
+    "yet_another_config_lib_v3": ">=${yacl_version}",
     "mod_menu": ">=${modmenu_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/mod/minux"
+      },
+      "update_checker": true
+    }
   }
 }

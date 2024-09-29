@@ -28,8 +28,8 @@ public final class ModMenuIntegration implements ModMenuApi {
                                                 .name(translatable("minux.config.category.main.title"))
                                                 .option(
                                                         Option.<String>createBuilder()
-                                                                .name(translatable("minux.config.category.shell_command.title"))
-                                                                .description(OptionDescription.of(translatable("minux.config.category.shell_command.description")))
+                                                                .name(translatable("minux.config.option.shell_command.title"))
+                                                                .description(OptionDescription.of(translatable("minux.config.option.shell_command.description")))
                                                                 .binding(
                                                                         defaults.getShellCommand(),
                                                                         config::getShellCommand,
