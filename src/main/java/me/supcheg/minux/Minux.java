@@ -2,6 +2,8 @@ package me.supcheg.minux;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.supcheg.minux.command.MinuxCommand;
 import me.supcheg.minux.config.MinuxConfiguration;
 import me.supcheg.minux.terminal.Terminal;
@@ -33,13 +35,13 @@ public final class Minux implements ClientModInitializer {
 
     @NotNull
     public MinuxConfiguration getConfiguration() {
-        return MinuxConfiguration.HANDLER.instance();
+        return AutoConfig.getConfigHolder(MinuxConfiguration.class).getConfig();
     }
 
     @Override
     public void onInitializeClient() {
         INSTANCE = this;
-        MinuxConfiguration.HANDLER.load();
+        AutoConfig.register(MinuxConfiguration.class, GsonConfigSerializer::new);
 
         registerCommand();
 

@@ -7,6 +7,11 @@
   "authors": [
     "Supcheg"
   ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/minux",
+    "sources": "https://github.com/Pupcheg/minux",
+    "issues": "https://github.com/Pupcheg/minux/issues"
+  },
   "license": "Apache-2.0",
   "icon": "assets/minux/icon.png",
   "environment": "client",
@@ -27,7 +32,7 @@
     "minecraft": "${minecraft_version}"
   },
   "suggests": {
-    "yet_another_config_lib_v3": ">=${yacl_version}",
+    "cloth-config": ">=${cloth_config_version}",
     "mod_menu": ">=${modmenu_version}"
   },
   "custom": {

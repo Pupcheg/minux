@@ -3,10 +3,8 @@
   "minux.command.shell.get.configured": "Configured shell command: %s",
   "minux.command.shell.get.running": "Current running shell command: %s",
   "minux.command.shell.replace": "Shell command replaced from %s to %s",
-  "minux.config.category.main.title": "Minux",
-  "minux.config.option.shell_command.description": "Setup startup shell command",
-  "minux.config.option.shell_command.title": "Shell Command",
-  "minux.config.title": "Minux Configuration",
   "modmenu.descriptionTranslation.minux": "Replaces boring chat with a fun command shell.",
-  "modmenu.nameTranslation.minux": "Minux"
+  "modmenu.nameTranslation.minux": "Minux",
+  "text.autoconfig.minux.option.shellCommand": "Shell command",
+  "text.autoconfig.minux.title": "Minux Configuration"
 }

@@ -29,6 +29,4 @@ If you want to change the shell start command, you can use one of the following 
 #### Via GUI
 
 Available only with installed [Mod Menu](https://modrinth.com/mod/modmenu)
-and [YetAnotherConfigLib](https://modrinth.com/mod/yacl)
-
-![configuration_preview](https://github.com/user-attachments/assets/375358f8-28e1-44e2-8a3b-af5a0d40dc26)
+and [Cloth Config API](https://modrinth.com/mod/cloth-config)
