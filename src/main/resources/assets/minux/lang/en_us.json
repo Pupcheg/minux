@@ -1,0 +1,7 @@
+{
+  "minux.config.title": "Minux Configuration",
+  "minux.config.category.main.title": "Minux",
+  "minux.config.category.shell_command.title": "Shell command",
+  "minux.config.category.shell_command.description": "Setups startup shell command",
+  "minux.command.restart.success": "The shell had been restarted"
+}

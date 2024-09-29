@@ -1,0 +1,7 @@
+{
+  "minux.config.title": "Конфигурация Minux",
+  "minux.config.category.main.title": "Minux",
+  "minux.config.category.shell_command.title": "Команда запуска оболочки",
+  "minux.config.category.shell_command.description": "Устанавливает команду запуска оболочки",
+  "minux.command.restart.success": "Оболочка была успешно перезапущена"
+}
