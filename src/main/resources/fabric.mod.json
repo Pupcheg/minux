@@ -8,7 +8,7 @@
     "Supcheg"
   ],
   "contact": {},
-  "license": "All-Rights-Reserved",
+  "license": "Apache-2.0",
   "icon": "assets/minux/icon.png",
   "environment": "client",
   "entrypoints": {
