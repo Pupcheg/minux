@@ -1,6 +1,7 @@
 package me.supcheg.minux;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import me.supcheg.minux.command.MinuxCommand;
 import me.supcheg.minux.config.MinuxConfiguration;
 import me.supcheg.minux.terminal.Terminal;
@@ -11,17 +12,17 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Objects;
 
+@Slf4j
 @Getter
 @Environment(EnvType.CLIENT)
 public final class Minux implements ClientModInitializer {
 
-    private static final Logger log = LoggerFactory.getLogger(Minux.class);
+    public static final String MOD_ID = "minux";
+
     private static Minux INSTANCE;
     private Terminal terminal;
 

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "minux",
+  "id": "${id}",
   "version": "${version}",
   "name": "Minux",
-  "description": "Replace chat with shell!",
+  "description": "Replace chat with shell",
   "authors": [
     "Supcheg"
   ],
