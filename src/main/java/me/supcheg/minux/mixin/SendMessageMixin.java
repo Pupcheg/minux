@@ -3,7 +3,9 @@ package me.supcheg.minux.mixin;
 import me.supcheg.minux.Minux;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,6 +24,7 @@ public final class SendMessageMixin {
             cancellable = true
     )
     public void sendMessageToTerminal(String chatText, boolean addToHistory, @NotNull CallbackInfo ci) {
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal(chatText));
         Minux.getInstance().sendCommandOrRestart(chatText);
         ci.cancel();
     }

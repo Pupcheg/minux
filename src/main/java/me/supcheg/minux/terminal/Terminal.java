@@ -1,5 +1,6 @@
 package me.supcheg.minux.terminal;
 
+import lombok.Getter;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
@@ -17,12 +18,15 @@ import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public final class Terminal implements Closeable {
+    @Getter
+    private final String shellCommand;
     private final Process process;
     private final BufferedWriter writer;
     private final BufferedReader reader;
     private final List<CompletableFuture<?>> messageSubscriptions;
 
     public Terminal(@NotNull String shellCommand) throws IOException {
+        this.shellCommand = shellCommand;
         this.process = new ProcessBuilder(shellCommand)
                 .redirectErrorStream(true)
                 .start();

@@ -2,6 +2,7 @@ plugins {
     id 'fabric-loom' version '1.7.4'
     id 'maven-publish'
     id 'io.freefair.lombok' version '8.10'
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = mod_version
@@ -76,29 +77,18 @@ java {
     withSourcesJar()
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${archives_base_name}" }
-    }
-}
-
-loom {
-}
-
-// configure the maven publication
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = archives_base_name
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
+tasks.modrinth.dependsOn(tasks.modrinthSyncBody)
+modrinth {
+    token = System.getenv 'MODRINTH_TOKEN'
+    projectId = 'minux'
+    versionNumber = mod_version
+    versionType = 'release'
+    uploadFile = remapJar
+    gameVersions = [minecraft_version]
+    syncBodyFrom = rootProject.file("README.md").text
+    dependencies {
+        required.version 'fabric-api', fabric_version
+        optional.version 'yacl', yacl_version
+        optional.version 'modmenu', modmenu_version
     }
 }

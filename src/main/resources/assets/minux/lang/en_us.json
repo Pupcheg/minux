@@ -1,7 +1,10 @@
 {
   "minux.config.title": "Minux Configuration",
   "minux.config.category.main.title": "Minux",
-  "minux.config.category.shell_command.title": "Shell command",
-  "minux.config.category.shell_command.description": "Setups startup shell command",
-  "minux.command.restart.success": "The shell had been restarted"
+  "minux.config.category.shell_command.title": "Shell Command",
+  "minux.config.category.shell_command.description": "Setup startup shell command",
+  "minux.command.restart.success": "The shell has been restarted",
+  "minux.command.shell.replace": "Shell command replaced from {} to {}",
+  "minux.command.shell.get.running": "Current running shell command: {}",
+  "minux.command.shell.get.configured": "Configured shell command: {}"
 }

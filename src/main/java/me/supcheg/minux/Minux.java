@@ -1,5 +1,6 @@
 package me.supcheg.minux;
 
+import lombok.Getter;
 import me.supcheg.minux.command.MinuxCommand;
 import me.supcheg.minux.config.MinuxConfiguration;
 import me.supcheg.minux.terminal.Terminal;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Objects;
 
+@Getter
 @Environment(EnvType.CLIENT)
 public final class Minux implements ClientModInitializer {
 
