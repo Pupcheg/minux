@@ -1,10 +1,12 @@
 {
-  "minux.command.restart.success": "The shell has been restarted",
-  "minux.command.shell.get.configured": "Configured shell command: %s",
-  "minux.command.shell.get.running": "Current running shell command: %s",
-  "minux.command.shell.replace": "Shell command replaced from %s to %s",
-  "modmenu.descriptionTranslation.minux": "Replaces boring chat with a fun command shell.",
+  "minux.command.enabled.get": "Status is %s",
+  "minux.command.enabled.set": "New status set to %s",
+  "minux.command.restart.success": "Shell restarted",
+  "minux.command.shell.get": "Configured shell command is %s. Running shell command is %s",
+  "minux.command.shell.set": "Shell command switched to %s",
+  "modmenu.descriptionTranslation.minux": "A fun command shell instead of a boring chat.",
   "modmenu.nameTranslation.minux": "Minux",
+  "text.autoconfig.minux.option.enabled": "Mod enabled",
   "text.autoconfig.minux.option.shellCommand": "Shell command",
-  "text.autoconfig.minux.title": "Minux Configuration"
+  "text.autoconfig.minux.title": "Minux Settings"
 }

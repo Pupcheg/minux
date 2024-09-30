@@ -8,21 +8,24 @@ import lombok.SneakyThrows;
 import me.supcheg.minux.Minux;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
+import static com.mojang.brigadier.arguments.BoolArgumentType.bool;
+import static com.mojang.brigadier.arguments.BoolArgumentType.getBool;
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static com.mojang.brigadier.arguments.StringArgumentType.string;
-import static net.kyori.adventure.text.Component.text;
-import static net.kyori.adventure.text.Component.translatable;
+import static net.minecraft.screen.ScreenTexts.onOrOff;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.text.Text.translatable;
 
 @Environment(EnvType.CLIENT)
 @RequiredArgsConstructor
 public final class MinuxCommand {
     private static final String COMMAND = "command";
+    private static final String STATE = "state";
 
     private final Minux minux;
 
@@ -32,19 +35,16 @@ public final class MinuxCommand {
                 .then(literal("restart")
                         .executes(this::restart)
                 )
-                .then(literal("shell")
-                        .then(literal("set")
-                                .then(argument(COMMAND, string())
-                                        .executes(this::setShellCommand)
-                                )
+                .then(literal("enabled")
+                        .executes(this::getEnabled)
+                        .then(argument(STATE, bool())
+                                .executes(this::setEnabled)
                         )
-                        .then(literal("get")
-                                .then(literal("running")
-                                        .executes(this::getRunningShell)
-                                )
-                                .then(literal("configured")
-                                        .executes(this::getConfiguredShell)
-                                )
+                )
+                .then(literal("shell")
+                        .executes(this::getConfiguredShell)
+                        .then(argument(COMMAND, string())
+                                .executes(this::setShellCommand)
                         )
                 );
     }
@@ -52,51 +52,41 @@ public final class MinuxCommand {
     @SneakyThrows
     private int restart(@NotNull CommandContext<ServerCommandSource> ctx) {
         minux.restartTerminal();
-        ctx.getSource().sendMessage(
-                translatable("minux.command.restart.success", NamedTextColor.GREEN)
-        );
+
+        ctx.getSource().sendFeedback(() -> translatable("minux.command.restart.success"), true);
         return Command.SINGLE_SUCCESS;
     }
 
-    private int getRunningShell(@NotNull CommandContext<ServerCommandSource> ctx) {
-        ctx.getSource().sendMessage(
-                translatable()
-                        .key("minux.command.shell.get.running")
-                        .color(NamedTextColor.YELLOW)
-                        .arguments(
-                                text(minux.getTerminal().getShellCommand(), NamedTextColor.WHITE)
-                        )
-        );
+    private int getEnabled(@NotNull CommandContext<ServerCommandSource> ctx) {
+        boolean enabled = minux.getConfiguration().isEnabled();
+
+        ctx.getSource().sendFeedback(() -> translatable("minux.command.enabled.get", onOrOff(enabled)), true);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private int setEnabled(@NotNull CommandContext<ServerCommandSource> ctx) {
+        boolean enabled = getBool(ctx, STATE);
+
+        minux.getConfiguration().setEnabled(enabled);
+
+        ctx.getSource().sendFeedback(() -> translatable("minux.command.enabled.set", onOrOff(enabled)), true);
         return Command.SINGLE_SUCCESS;
     }
 
     private int getConfiguredShell(@NotNull CommandContext<ServerCommandSource> ctx) {
-        ctx.getSource().sendMessage(
-                translatable()
-                        .key("minux.command.shell.get.configured")
-                        .color(NamedTextColor.YELLOW)
-                        .arguments(
-                                text(minux.getConfiguration().getShellCommand(), NamedTextColor.WHITE)
-                        )
-        );
+        String configured = minux.getConfiguration().getShellCommand();
+        String running = minux.getTerminal().getShellCommand();
+
+        ctx.getSource().sendFeedback(() -> translatable("minux.command.shell.get", Text.of(configured), Text.of(running)), true);
         return Command.SINGLE_SUCCESS;
     }
 
     private int setShellCommand(@NotNull CommandContext<ServerCommandSource> ctx) {
-        String oldShellCommand = minux.getConfiguration().getShellCommand();
-        String newShellCommand = getString(ctx, COMMAND);
+        String command = getString(ctx, COMMAND);
 
-        minux.getConfiguration().setShellCommand(newShellCommand);
+        minux.getConfiguration().setShellCommand(command);
 
-        ctx.getSource().sendMessage(
-                translatable()
-                        .key("minux.command.shell.replace")
-                        .color(NamedTextColor.YELLOW)
-                        .arguments(
-                                text(oldShellCommand, NamedTextColor.WHITE),
-                                text(newShellCommand, NamedTextColor.WHITE)
-                        )
-        );
+        ctx.getSource().sendFeedback(() -> translatable("minux.command.shell.set", Text.of(command)), true);
         return Command.SINGLE_SUCCESS;
     }
 }

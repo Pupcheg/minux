@@ -24,8 +24,10 @@ public final class SendMessageMixin {
             cancellable = true
     )
     public void sendMessageToTerminal(String chatText, boolean addToHistory, @NotNull CallbackInfo ci) {
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal(chatText));
-        Minux.getInstance().sendCommandOrRestart(chatText);
-        ci.cancel();
+        if (Minux.getInstance().getConfiguration().isEnabled()) {
+            MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal(chatText));
+            Minux.getInstance().sendCommandOrRestart(chatText);
+            ci.cancel();
+        }
     }
 }

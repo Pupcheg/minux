@@ -1,10 +1,12 @@
 {
-  "minux.command.restart.success": "Оболочка была перезапущена",
-  "minux.command.shell.get.configured": "Настроенная команда оболочки: %s",
-  "minux.command.shell.get.running": "Текущая выполняемая команда оболочки: %s",
-  "minux.command.shell.replace": "Команда запуска оболочки заменена с %s на %s",
-  "modmenu.descriptionTranslation.minux": "Заменяет скучный чат весёлой командной оболочкой.",
+  "minux.command.enabled.get": "Текущее состояние - %s",
+  "minux.command.enabled.set": "Состояние установлено на %s",
+  "minux.command.restart.success": "Оболочка перезапущена",
+  "minux.command.shell.get": "Заданная команда оболочки - %s. Выполняемая - %s",
+  "minux.command.shell.set": "Команда установлена на %s",
+  "modmenu.descriptionTranslation.minux": "Весёлая командная оболочка вместо скучного чата.",
   "modmenu.nameTranslation.minux": "Minux",
-  "text.autoconfig.minux.option.shellCommand": "Команда запуска оболочки",
-  "text.autoconfig.minux.title": "Конфигурация Minux"
+  "text.autoconfig.minux.option.enabled": "Мод включён",
+  "text.autoconfig.minux.option.shellCommand": "Команда оболочки",
+  "text.autoconfig.minux.title": "Настройки Minux"
 }

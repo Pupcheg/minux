@@ -13,5 +13,6 @@ import net.fabricmc.api.Environment;
 @Setter
 @Config(name = Minux.MOD_ID)
 public final class MinuxConfiguration implements ConfigData {
+    private boolean enabled = true;
     private String shellCommand = "bash";
 }
