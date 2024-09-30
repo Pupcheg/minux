@@ -77,7 +77,7 @@ modrinth {
     syncBodyFrom = rootProject.file('README.md').text
     dependencies {
         required.version 'fabric-api', fabric_version
-        optional.version 'cloth-config', "$cloth_config_version+fabric"
+        required.version 'cloth-config', "$cloth_config_version+fabric"
         optional.version 'modmenu', modmenu_version
     }
 }

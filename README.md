@@ -29,4 +29,3 @@ If you want to change the shell start command, you can use one of the following 
 #### Via GUI
 
 Available only with installed [Mod Menu](https://modrinth.com/mod/modmenu)
-and [Cloth Config API](https://modrinth.com/mod/cloth-config)
