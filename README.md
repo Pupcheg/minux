@@ -19,12 +19,13 @@ If you want to change the shell start command, you can use one of the following 
 
 #### Via Commands
 
-| Command                       | Description                                         |
-|-------------------------------|-----------------------------------------------------|
-| `/minux shell get running`    | Display the command that started the running shell  |
-| `/minux shell get configured` | Display the command configured to start a new shell |
-| `/minux shell set <command>`  | Set a new command to start the next shell           |
-| `/minux restart`              | 	Restart the current shell                          |
+| Command                       | Description                      |
+|-------------------------------|----------------------------------|
+| `/minux restart`              | Restart current shell            |
+| `/minux enabled`              | Display is mod enabled           |
+| `/minux enabled <true/false>` | Set mod enabled state            |
+| `/minux shell`                | Display configured shell command |
+| `/minux shell <command>`      | Set shell command                |
 
 #### Via GUI
 
